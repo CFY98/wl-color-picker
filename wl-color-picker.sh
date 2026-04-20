@@ -62,7 +62,7 @@ sleep 1
 # Store the hex color value using graphicsmagick or imagemagick.
 if command -v /usr/bin/gm &> /dev/null; then
     color=$(grim -g "$position" -t png - \
-        | /usr/bin/gm convert - -format '%[pixel:p{0,0}]' txt:- \
+        | /usr/bin/gm magick - -format '%[pixel:p{0,0}]' txt:- \
         | tail -n 1 \
         | rev \
         | cut -d ' ' -f 1 \
@@ -70,7 +70,7 @@ if command -v /usr/bin/gm &> /dev/null; then
     )
 else
     color=$(grim -g "$position" -t png - \
-        | convert - -format '%[pixel:p{0,0}]' txt:- \
+        | magick - -format '%[pixel:p{0,0}]' txt:- \
         | tail -n 1 \
         | cut -d ' ' -f 4
     )
